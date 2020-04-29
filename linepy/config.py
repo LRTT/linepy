@@ -59,7 +59,7 @@ class Config(object):
         'DEFAULT': '10.0'
     }
 
-    APP_TYPE    = 'ANDROIDLITE'
+    APP_TYPE    = 'DESKTOPWIN'
     APP_VER     = APP_VERSION[APP_TYPE] if APP_TYPE in APP_VERSION else APP_VERSION['DEFAULT']
     CARRIER     = '51089, 1-0'
     SYSTEM_NAME = 'LRTT'
