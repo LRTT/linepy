@@ -145,19 +145,12 @@ class Auth(object):
 
     def loginWithQrCode(self):
         newqr = NewQRLogin()
-        APPTYPE = self.server.APP_NAME.split("\t")[0]
-        if APPTYPE == "ANDROIDLITE":
-            token, cert = newqr.loginWithQrCode("android_lite")
-        elif APPTYPE == "IOSIPAD":
-            token, cert = newqr.loginWithQrCode("ios_ipad")
-        elif APPTYPE == "CHROME":
-            token, cert = newqr.loginWithQrCode("chrome")
-        elif APPTYPE == "DESKTOPWIN":
-            token, cert = newqr.loginWithQrCode("desktopwin")
-        elif APPTYPE == "DESKTOPMAC":
-            token, cert = newqr.loginWithQrCode("desktopmac")
-        else:
-            raise Exception('APP_NAME not supported')
+        APPTYPE = self.server.APP_NAME.split("\t")[0].lower()
+        if APPTYPE == "androidlite":
+            APPTYPE = "android_lite"
+        if APPTYPE == "iosipad":
+            APPTYPE = "ios_ipad"
+        token, cert = newqr.loginWithQrCode(APPTYPE, callback=self.callback.callback)
         self.loginWithAuthToken(token)
 
     def loginWithAuthToken(self, authToken=None):
