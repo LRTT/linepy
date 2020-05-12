@@ -1,0 +1,7 @@
+requests
+rsa
+hyper
+httpx
+httplib2
+python-axolotl-curve25519
+pycryptodome
