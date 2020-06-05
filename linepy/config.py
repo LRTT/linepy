@@ -3,22 +3,17 @@ from akad.ttypes import ApplicationType
 import re
 
 class Config(object):
-    Q_HOST = "ga2"
-    #Q_HOST = "ga2"
-    DOMAIN = "line.naver.jp"
-    #DOMAIN = "line-apps-beta.com"
-    #Q_HOST = "legy-beta"
-    LINE_HOST_DOMAIN            = 'https://%s.%s' % (Q_HOST, DOMAIN) #ga2, #gfp, #gd2x
+    LINE_HOST_DOMAIN            = 'https://gd2.line.naver.jp'
     LINE_OBS_DOMAIN             = 'https://obs-sg.line-apps.com'
-    LINE_TIMELINE_API           = 'https://%s.%s/mh/api' % (Q_HOST, DOMAIN)
-    LINE_TIMELINE_MH            = 'https://%s.%s/mh' % (Q_HOST, DOMAIN)
+    LINE_TIMELINE_API           = 'https://gd2.line.naver.jp/mh/api'
+    LINE_TIMELINE_MH            = 'https://gd2.line.naver.jp/mh'
     LINE_LIFF_SEND              = 'https://api.line.me/message/v3/share'
     LINE_PERMISSION_API         = 'https://access.line.me/dialog/api/permissions'
 
     LINE_LOGIN_QUERY_PATH       = '/api/v4p/rs'
     LINE_AUTH_QUERY_PATH        = '/api/v4/TalkService.do'
 
-    LINE_API_QUERY_PATH_FIR     = '/S4' #F
+    LINE_API_QUERY_PATH_FIR     = '/S4'
     LINE_POLL_QUERY_PATH_FIR    = '/P4'
     LINE_CALL_QUERY_PATH        = '/V4'
     LINE_LIFF_QUERY_PATH        = '/LIFF1'
@@ -38,24 +33,24 @@ class Config(object):
     }
 
     APP_VERSION = {
-        'ANDROID': '10.1.1',
-        'IOS': '10.1.1',
-        'ANDROIDLITE': '2.12.0',
-        'DESKTOPWIN': '5.21.3',
-        'DESKTOPMAC': '5.21.3',
-        'IOSIPAD': '10.1.1',
-        'CHROMEOS': '2.3.3',
-        'DEFAULT': '10.1.1'
+        'ANDROID': '10.8.3',
+        'IOS': '10.8.0',
+        'ANDROIDLITE': '2.14.0',
+        'DESKTOPWIN': '6.0.3',
+        'DESKTOPMAC': '6.0.3',
+        'IOSIPAD': '10.8.0',
+        'CHROMEOS': '2.3.8',
+        'DEFAULT': '10.6.5'
     }
 
     SYSTEM_VERSION = {
         'ANDROID': '10.0',
-        'IOS': '13.3.1',
+        'IOS': '13.4.1',
         'ANDROIDLITE': '10.0',
         'DESKTOPWIN': '10.0',
         'DESKTOPMAC': '10.15.1',
-        'IOSIPAD': '13.3.1',
-        'CHROMEOS': '79.0',
+        'IOSIPAD': '13.4.1',
+        'CHROMEOS': '81.0',
         'DEFAULT': '10.0'
     }
 
@@ -67,10 +62,10 @@ class Config(object):
     IP_ADDR     = '8.8.8.8'
     EMAIL_REGEX = re.compile(r"[^@]+@[^@]+\.[^@]+")
     URL_REGEX   = re.compile(r'^(?:http|ftp)s?://' r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|' r'localhost|' r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})' r'(?::\d+)?' r'(?:/?|[/?]\S+)$', re.IGNORECASE)
-    MID_REGEX   = re.compile(r'u\w{32}')
-    GID_REGEX   = re.compile(r'c\w{32}')
-    RID_REGEX   = re.compile(r'r\w{32}')
-    ALLIDS_REGEX= re.compile(r'(?:u\w{32}|c\w{32}|r\w{32})')
+    MID_REGEX   = re.compile(r'u[a-f0-9]{32}')
+    GID_REGEX   = re.compile(r'c[a-f0-9]{32}')
+    RID_REGEX   = re.compile(r'r[a-f0-9]{32}')
+    ALLIDS_REGEX= re.compile(r'[ucr][a-f0-9]{32}')
 
     def __init__(self, appType=None):
         if appType:
