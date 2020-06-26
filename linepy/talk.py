@@ -96,16 +96,39 @@ class Talk(object):
     """Message"""
 
     @loggedIn
-    def sendMessage(self, to, text, contentMetadata={}, contentType=0):
-        msg = Message()
-        msg.to, msg._from = to, self.profile.mid
-        msg.text = text
-        msg.contentType, msg.contentMetadata = contentType, contentMetadata
-        if to not in self._messageReq:
-            self._messageReq[to] = -1
-        self._messageReq[to] += 1
-        return self.talk.sendMessage(self._messageReq[to], msg)
+    def sendMessage(self, to="replyMessage", text=None, contentMetadata={}, contentType=0):
+        if to != "replyMessage":
+            msg = Message(
+                to = to,
+                text = text,
+                contentMetadata = contentMetadata,
+                contentType = contentType
+            )
+        else:
+            msg = Message(
+                to = self.to,
+                text = text,
+                contentMetadata = contentMetadata,
+                relatedMessageId = self.id,
+                messageRelationType = 3,
+                relatedMessageServiceCode = 1,
+                contentType = contentType
+            )
+        return self.talk.sendMessage(0, msg)
 
+    @loggedIn
+    def replyMessage(self, text, reply="replyMessage", contentMetadata={}):
+        for i in range(0, len(text), 10000):
+            txt = text[i:i+10000]
+            if reply == "replyMessage":
+                try:
+                    reply = self.sendMessage(self.to, txt, contentMetadata)
+                except:
+                    reply = self.sendMessage(reply, txt, contentMetadata)
+            else:
+                raise Exception("Invalid Method")
+        return reply
+                
     @loggedIn
     def sendMessageObject(self, msg):
         to = msg.to
@@ -260,6 +283,30 @@ class Talk(object):
             raise Exception("Invalid mention position")
         self.sendMessage(to, textx, {'MENTION': str('{"MENTIONEES":' + json.dumps(arr) + '}')}, 0)
 
+    @loggedIn
+    def sendMentionV3(self, *args, **kwargs):
+        data = list(args[1]) if type(args[1]) is dict else args[1] if type(args[1]) is list else [args[1]]
+        arrData = ""
+        arr = []
+        mention = "@RhyN"
+        if not data:
+            raise Exception("Invalid data")
+        if "@!" in args[0]:
+            if args[0].count("@!") != len(data):
+                raise Exception("Invalid count @!")
+            _t = args[0].split("@!")
+            _d = ''
+            for m in range(len(data)):
+                _d += f'{_t[m]}'
+                slen = len(_d)
+                elen = len(_d) + 5
+                arrData = {'S':str(slen), 'E':str(elen), 'M':data[m]}
+                arr.append(arrData)
+                _d += mention
+            _d += str(_t[len(data)])+' '
+        self.replyMessage(_d, contentMetadata={'MENTION': str('{"MENTIONEES":' + json.dumps(arr) + '}')})
+        
+        
     """ Usage:
         @to Integer
         @text String
