@@ -16,32 +16,32 @@ class QRLogin:
 
     HEADERS = {
         "android_lite": {
-            "User-Agent": "LLA/2.12.0 SKR-H0 9",
-            "X-Line-Application": "ANDROIDLITE\t2.12.0\tAndroid OS\t9;SECONDARY"
+            "user-agent": "LLA/2.12.0 SKR-H0 9",
+            "x-line-application": "ANDROIDLITE\t2.12.0\tAndroid OS\t9;SECONDARY"
         },
         "android": {
-            "User-Agent": "Line/10.6.2",
-            "X-Line-Application": "ANDROID\t10.6.2\tAndroid OS\t10"
+            "user-agent": "Line/10.6.2",
+            "x-line-application": "ANDROID\t10.6.2\tAndroid OS\t10"
         },
         "ios_ipad": {
-            "User-Agent": "Line/10.1.1",
-            "X-Line-Application": "IOSIPAD\t10.1.1\tiPhone 8\t11.2.5"
+            "user-Agent": "Line/10.1.1",
+            "x-line-application": "IOSIPAD\t10.1.1\tiPhone 8\t11.2.5"
         },
         "ios": {
-            "User-Agent": "Line/10.1.1",
-            "X-Line-Application": "IOS\t10.1.1\tiPhone 8\t11.2.5"
+            "user-agent": "Line/10.1.1",
+            "x-line-application": "IOS\t10.1.1\tiPhone 8\t11.2.5"
         },
         "chrome": {
-            "User-Agent": "MozilX-Line-Application/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36",
-            "X-Line-Application": "CHROMEOS\t2.3.2\tChrome OS\t1"
+            "user-agent": "MozilX-Line-Application/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36",
+            "x-line-application": "CHROMEOS\t2.3.2\tChrome OS\t1"
         },
         "desktopwin": {
-            "User-Agent": "Line/5.12.3",
-            "X-Line-Application": "DESKTOPWIN\t5.21.3\tWindows\t10"
+            "user-agent": "Line/5.12.3",
+            "x-line-application": "DESKTOPWIN\t5.21.3\tWindows\t10"
         },
         "desktopmac": {
-            "User-Agent": "Line/5.12.3",
-            "X-Line-Application": "DESKTOPMAC\t5.21.3\tMAC\t10.15"
+            "aser-agent": "Line/5.12.3",
+            "x-line-application": "DESKTOPMAC\t5.21.3\tMAC\t10.15"
         }
     }
 
