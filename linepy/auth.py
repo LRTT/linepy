@@ -3,7 +3,7 @@ from akad.ttypes import IdentityProvider, LoginResultType, LoginRequest, LoginTy
 from .server import Server
 from .session import Session
 from .callback import Callback
-from .newqr import NewQRLogin
+from .login import QRLogin
 import rsa, os
 
 class Auth(object):
@@ -144,14 +144,14 @@ class Auth(object):
             self.loginWithAuthToken(result.authToken)
 
     def loginWithQrCode(self):
-        newqr = NewQRLogin()
-        APPTYPE = self.server.APP_NAME.split("\t")[0].lower()
-        if APPTYPE == "androidlite":
-            APPTYPE = "android_lite"
-        if APPTYPE == "iosipad":
-            APPTYPE = "ios_ipad"
-        token, cert = newqr.loginWithQrCode(APPTYPE, callback=self.callback.callback)
-        self.loginWithAuthToken(token)
+        newqr = QRLogin()
+        application = self.server.APP_NAME.split("\t")[0].lower()
+        if application == "androidlite":
+            application = "android_lite"
+        elif application == "iosipad":
+            application = "ios_ipad"
+        result = newqr.loginWithQrCode(application, callback=self.callback.callback)
+        self.loginWithAuthToken(result.accessToken)
 
     def loginWithAuthToken(self, authToken=None):
         if authToken is None:
