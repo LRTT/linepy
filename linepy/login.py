@@ -40,7 +40,7 @@ class QRLogin:
             "x-line-application": "DESKTOPWIN\t5.21.3\tWindows\t10"
         },
         "desktopmac": {
-            "aser-agent": "Line/5.12.3",
+            "uaser-agent": "Line/5.12.3",
             "x-line-application": "DESKTOPMAC\t5.21.3\tMAC\t10.15"
         }
     }
